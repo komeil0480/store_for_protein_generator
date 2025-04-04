@@ -1,7 +1,11 @@
 import tqdm
 import sys
-import random
 import os
+git_repo_path = sys.argv[3]
+sys.path.append(git_repo_path)
+sys.path.append('/opt/conda/lib/python3.10/site-packages')
+sys.path.append(os.path.join(git_repo_path, 'alphafold'))
+import random
 import matplotlib.pyplot as plt
 import numpy as np
 import py3Dmol
