@@ -1,7 +1,11 @@
 import tqdm
 import sys
-import random
 import os
+git_repo_path = sys.argv[3]
+sys.path.append(git_repo_path)
+sys.path.append('/opt/conda/lib/python3.10/site-packages')
+sys.path.append(os.path.join(git_repo_path, 'alphafold'))
+import random
 import matplotlib.pyplot as plt
 import numpy as np
 import py3Dmol
@@ -157,8 +161,8 @@ def predict(folder_path,git_repo_path,np_example):
   grid[0, 0] = out
 
   out = Output()
-  with out:
-    plot_plddt_legend().show()
+  # with out:
+  #   plot_plddt_legend().show()
   grid[0, 1] = out
 
   #display.display(grid)
@@ -177,19 +181,19 @@ def predict(folder_path,git_repo_path,np_example):
   # plt.ylabel('pLDDT')
 
   if num_plots == 2:
-  #   plt.subplot(1, 2, 2)
+    # plt.subplot(1, 2, 2)
     pae, max_pae = list(pae_outputs.values())[0]
-  #   plt.imshow(pae, vmin=0., vmax=max_pae, cmap='Greens_r')
-  #   plt.colorbar(fraction=0.046, pad=0.04)
+    # plt.imshow(pae, vmin=0., vmax=max_pae, cmap='Greens_r')
+    # plt.colorbar(fraction=0.046, pad=0.04)
 
-  #   # Display lines at chain boundaries.
-  #   best_unrelaxed_prot = unrelaxed_proteins[best_model_name]
-  #   total_num_res = best_unrelaxed_prot.residue_index.shape[-1]
-  #   chain_ids = best_unrelaxed_prot.chain_index
-  #   for chain_boundary in np.nonzero(chain_ids[:-1] - chain_ids[1:]):
-  #     if chain_boundary.size:
-  #       plt.plot([0, total_num_res], [chain_boundary, chain_boundary], color='red')
-  #       plt.plot([chain_boundary, chain_boundary], [0, total_num_res], color='red')
+    # Display lines at chain boundaries.
+    # best_unrelaxed_prot = unrelaxed_proteins[best_model_name]
+    # total_num_res = best_unrelaxed_prot.residue_index.shape[-1]
+    # chain_ids = best_unrelaxed_prot.chain_index
+    # for chain_boundary in np.nonzero(chain_ids[:-1] - chain_ids[1:]):
+    #   if chain_boundary.size:
+    #     plt.plot([0, total_num_res], [chain_boundary, chain_boundary], color='red')
+    #     plt.plot([chain_boundary, chain_boundary], [0, total_num_res], color='red')
 
     # plt.title('Predicted Aligned Error')
     # plt.xlabel('Scored residue')
